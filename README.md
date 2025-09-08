@@ -48,44 +48,131 @@ Identify the best-performing combinations and suggest practical applications.
 
 
 # Evaluation and Comparison of Prompting Techniques Across AI Platforms for Text Summarization
-## 1. Introduction
-This study examines how different prompting strategies—zero-shot, few-shot, chain-of-thought (CoT), and role-based—affect the quality of AI-generated summaries across four platforms: ChatGPT, Gemini, Claude, and Copilot. The technical article selected for summarization, “The Basics of Blockchain Technology”, is approximately 500 words long. The objective is to identify which combination of platform and prompting method produces the best summaries in terms of accuracy, coherence, simplicity, speed, and user experience for undergraduate students.
+## 1. Article
 
-## 2. Evaluation Framework
+The Basics of Blockchain Technology (500 words)
 
-### 2.1 Task Definition
-Summarize a technical article into a concise, 150-word summary.
-Target audience: Undergraduate students seeking quick, understandable overviews.
+Blockchain is a distributed digital ledger that records transactions across a network of computers in a way that makes the records hard to alter. Instead of a single company or server owning the data, many independent participants (called nodes) maintain copies of the ledger. This design removes a single point of failure, makes data tampering easier to detect, and allows participants who do not fully trust each other to still agree on a shared history.
 
-### 2.2 Prompting Techniques
-Zero-Shot – Direct request to summarize without examples.
-Few-Shot – Provide 2–3 sample text-summary pairs before summarization.
-Chain-of-Thought (CoT) – Ask the AI to reason step-by-step (e.g., identify key points first, then summarize).
-Role-Based – Assign a persona (e.g., “You are a university professor summarizing for first-year students…”).
+Data is stored in blocks. A block is a container that typically includes a list of recent transactions, a timestamp, a reference to the previous block, and a cryptographic digest called a hash. The hash is produced by running the block’s contents through a one-way mathematical function. If anyone changes even one bit in the block, the hash changes dramatically. Because each block points to the hash of the previous block, blocks form a chain. Changing a past block would break the links, revealing tampering unless most participants agree to rewrite history.
 
-### 2.3 Evaluation Metrics
-Accuracy – Faithfulness to source content without hallucination.
-Coherence – Logical structure and readability of the summary.
-Simplicity – Use of clear, concise language appropriate for undergraduates.
-Speed – Time taken by each model to generate the output.
-User Experience (UX) – Ease of interaction, clarity of response, and formatting.
+Consensus mechanisms coordinate how nodes agree on which new block becomes part of the chain. Two common approaches are Proof of Work (PoW) and Proof of Stake (PoS). In PoW, miners compete to solve a difficult puzzle; the first valid solution earns the right to add the next block and receive a reward. In PoS, validators lock up (stake) cryptocurrency; one is chosen to propose the next block, and others attest to it. Both aim to make attacks expensive and honest participation worthwhile.
+
+Key properties of blockchains include decentralization, transparency, and immutability. Decentralization means no single authority controls the ledger. Transparency means anyone can inspect the history on public networks. Immutability means it is very hard to change finalized records, which increases trust in the data. Smart contracts—programs stored and executed on the blockchain—allow automatic enforcement of rules, enabling applications like decentralized finance (DeFi) without intermediaries.
+
+Blockchains have uses beyond cryptocurrency. In supply chains, they can track goods from origin to store shelves, improving traceability and reducing fraud. In digital identity, they can let people prove attributes without revealing all personal data. In healthcare, they may support audit trails for data sharing. Governments experiment with land registries and voting pilots. Not every use case benefits, though; blockchains can be slower and more expensive than traditional databases, and public chains face scalability and energy concerns (especially with PoW).
+
+In summary, a blockchain is a shared, append-only ledger organized as linked blocks and secured by cryptography and consensus. Its design reduces reliance on central authorities and enables new programmable applications, but trade-offs—performance, cost, and complexity—mean it should be chosen when tamper-resistance and openness are worth the overhead.
 
 
-## 3. Comparative Analysis
-<img width="905" height="583" alt="image" src="https://github.com/user-attachments/assets/1b14cde3-ab03-4c01-ba64-a9e7f3adb0b1" />
+
+## 2. Prompts
+### Prompt A: Straightforward
+Summarize the following 500-word technical article, "The Basics of Blockchain Technology," for first- and second-year undergraduate students.
+
+Constraints:
+- Output length: 120–150 words.
+- Plain, simple language; define any necessary jargon in parentheses.
+- Cover: what blockchain is, how blocks+hashes+chain work, what consensus is (briefly), key properties (decentralization, immutability), one real-world use, and one limitation.
+- End with exactly 2 short bullet takeaways.
+
+#### ARTICLE:
+##### ChatGPT:
+Blockchain is a digital record-keeping system where information is stored in units called blocks. Each block holds data and a unique identifier called a hash (a fixed-length code made from the block’s content). Every new block links to the previous one using its hash, creating a secure chain of blocks. Because changing one block would break the whole chain, the system is hard to tamper with.
+
+To keep everyone honest, blockchains use consensus (agreement among many computers) instead of relying on one central authority. This makes the system decentralized (no single controller) and immutable (data can’t easily be changed). A real-world use is cryptocurrency like Bitcoin. However, one limitation is that blockchain can be slow and energy-intensive.
+
+Blockchain stores data in linked, tamper-resistant blocks.
+
+It is decentralized but can face speed and energy issues.
+
+##### Claude:
+I notice that you've provided the structure for a 500-word technical article titled "The Basics of Blockchain Technology," but the actual article content appears to be missing - there's just "[Insert Article Here]" where the article should be.
+
+To provide you with an accurate 120-150 word summary that meets all your specific constraints, I would need the actual article content to work with.
+
+However, if you'd like, I could create a sample summary based on what a typical "Basics of Blockchain Technology" article might cover, following your exact requirements. Or if you can provide the actual article text, I'd be happy to summarize that specific content for your undergraduate students.
+
+Which would you prefer - should I wait for the actual article, or would a sample summary based on common blockchain basics be helpful?
 
 
-## 4. Key Observations
+### Prompt B: Tabular
+Read the article "The Basics of Blockchain Technology" and produce a compact table plus a one-sentence summary.
 
-Few-Shot and CoT prompting consistently improved accuracy and structure.
-Role-Based prompting produced the most engaging summaries for undergraduate learners.
-Claude and ChatGPT delivered the most balanced performance, excelling in coherence and tone.
-Gemini stood out for factual precision but sometimes leaned toward overly technical language.
-Copilot, while useful for code-oriented tasks, lagged behind in summarizing long-form text.
+Requirements:
+- Table columns: Concept | In simple words (≤15) | Why it matters | Example
+- Include these rows in order: Ledger, Block, Hash, Chain, Consensus (PoW/PoS), Decentralization, Immutability, Smart Contracts, Real-world Uses, Limitations.
+- Keep each cell concise.
+- After the table, add one sentence summarizing the overall idea for undergraduates.
+
+#### ARTICLE:
+##### ChatGpt:
+<img width="1585" height="803" alt="image" src="https://github.com/user-attachments/assets/b8de7562-08bc-40fd-8156-3c0ae85b52e0" />
+
+### Claude:
+<img width="921" height="1027" alt="image" src="https://github.com/user-attachments/assets/c880351d-51b9-4ceb-bc1f-d668df8c0cd5" />
 
 
-## 5. Conclusion
-The best combination for educational content delivery was Claude with Role-Based Prompting, closely followed by ChatGPT with Chain-of-Thought or Role-Based Prompting. These combinations provided summaries that were accurate, coherent, simple, fast, and student-friendly. Incorporating these prompting strategies can significantly improve content curation for research summaries aimed at undergraduate audiences.
+
+### Prompt C: Missing-Word
+Fill in the blanks to complete a 150–180 word summary of "The Basics of Blockchain Technology" for undergraduates.
+
+Rules:
+- Replace every '____' with 1–4 words.
+- Keep the tone friendly and clear; avoid jargon unless defined in parentheses.
+
+TEMPLATE:
+Blockchain is a ____ ledger shared across many ____ (computers/nodes). Data is grouped into ____ that include transactions and a ____ (hash) pointing to the previous block. Linking blocks by their hashes creates a ____ that is hard to alter. To agree on the next block, networks use ____ such as Proof of Work or Proof of Stake, which make attacks ____ and honest behavior ____.
+Key ideas include ____ (decentralization), ____ (transparency), and ____ (immutability), which together build trust. Smart contracts are ____ that run on the blockchain and automatically enforce ____. Beyond cryptocurrency, blockchains can help with ____ tracking, ____ identity, and secure ____ sharing. Governments test uses like ____ registries.
+However, blockchains can be ____ or ____ compared with traditional databases, and public networks face ____ and ____ concerns. The takeaway: choose blockchain when tamper-resistance and openness are ____ for the application.
+
+#### ARTICLE:
+##### ChatGpt:
+Blockchain is a digital ledger shared across many nodes (computers/nodes). Data is grouped into blocks that include transactions and a cryptographic code (hash) pointing to the previous block. Linking blocks by their hashes creates a chain that is hard to alter. To agree on the next block, networks use consensus methods such as Proof of Work or Proof of Stake, which make attacks costly and honest behavior rewarding.
+Key ideas include no central control (decentralization), open access (transparency), and unchangeable records (immutability), which together build trust. Smart contracts are programs that run on the blockchain and automatically enforce rules. Beyond cryptocurrency, blockchains can help with supply chain tracking, digital identity, and secure healthcare sharing. Governments test uses like land registries.
+However, blockchains can be slower or costlier compared with traditional databases, and public networks face scalability and energy concerns. The takeaway: choose blockchain when tamper-resistance and openness are essential for the application.
+
+##### Claude:
+Blockchain is a **digital** ledger shared across many **independent nodes** (computers/nodes). Data is grouped into **blocks** that include transactions and a **cryptographic fingerprint** (hash) pointing to the previous block. Linking blocks by their hashes creates a **secure chain** that is hard to alter. To agree on the next block, networks use **consensus mechanisms** such as Proof of Work or Proof of Stake, which make attacks **expensive** and honest behavior **profitable**.
+
+Key ideas include **no single authority** (decentralization), **public inspection** (transparency), and **tamper resistance** (immutability), which together build trust. Smart contracts are **automated programs** that run on the blockchain and automatically enforce **predefined rules**. Beyond cryptocurrency, blockchains can help with **supply chain** tracking, **digital** identity, and secure **data** sharing. Governments test uses like **land** registries.
+
+However, blockchains can be **slower** or **more expensive** compared with traditional databases, and public networks face **scalability** and **energy** concerns. The takeaway: choose blockchain when tamper-resistance and openness are **worth the overhead** for the application.
+
+
+## 3. Results Template
+Platform	Prompt           Speed (sec)	Accuracy (1–5)	Coherence (1–5)	Simplicity (1–5)	Relevance (1–5)	Customization (1–5)	Depth (1–5)	Tone & UX (1–5)	
+ChatGPT	  Straightforward	 3 Sec         4                  2               4                 5                4                 5             1
+ChatGPT	  Tabular	         5 sec         4                  3               2                 5                3                 3             1
+ChatGPT	  Missing-Word	   5 sec         4                  3               2                 5                4                 3             1
+Claude	  Straightforward	 15 sec        3                  2               5                 4                3                 3             1
+Claude	  Tabular          50 sec        1                  2               4                 4                3                 2             1
+Claude	  Missing-Word	   4 sec         3                  2               5                 4                3                 1             1
+
+
+
+## 4. Scoring Rubric (1–5 scale)
+
+Accuracy
+1 = Major errors | 3 = Mostly correct | 5 = Factually solid
+
+Coherence
+1 = Disorganized | 3 = Some flow | 5 = Clear structure
+
+Simplicity
+1 = Too technical | 3 = Mixed | 5 = Very easy + jargon explained
+
+Relevance
+1 = Misses key points | 3 = Partial | 5 = Covers all required points
+
+Customization for Undergrads
+1 = Expert tone | 3 = Some adaptation | 5 = Fully tailored
+
+Depth
+1 = Too shallow | 3 = Adequate | 5 = Informative but concise
+
+Tone & UX
+1 = Dry/messy | 3 = Readable | 5 = Friendly + clean formatting
 
 
 # Result
