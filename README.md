@@ -144,10 +144,15 @@ However, blockchains can be **slower** or **more expensive** compared with tradi
 Platform	Prompt           Speed (sec)	Accuracy (1–5)	Coherence (1–5)	Simplicity (1–5)	Relevance (1–5)	Customization (1–5)	Depth (1–5)	Tone & UX (1–5)	
 <br>
 ChatGPT	  Straightforward	 3 Sec         4                  2               4                 5                4                 5             1
+<br>
 ChatGPT	  Tabular	         5 sec         4                  3               2                 5                3                 3             1
+<br>
 ChatGPT	  Missing-Word	   5 sec         4                  3               2                 5                4                 3             1
+<br>
 Claude	  Straightforward	 15 sec        3                  2               5                 4                3                 3             1
+<br>
 Claude	  Tabular          50 sec        1                  2               4                 4                3                 2             1
+<br>
 Claude	  Missing-Word	   4 sec         3                  2               5                 4                3                 1             1
 
 
